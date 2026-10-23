@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class CampoTexto extends StatelessWidget {
   final String texto;
-  final double tamanio;
+  final double tamano;
   final FontWeight peso;
   final Color color;
   final TextAlign alineacion;
 
-  CampoTexto({
+  const CampoTexto({
     super.key,
     required this.texto,
-    required this.tamanio,
+    required this.tamano,
     required this.peso,
     required this.color,
     required this.alineacion,
@@ -18,7 +18,10 @@ class CampoTexto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Text(
+      texto,
+      textAlign: alineacion,
+      style: TextStyle(fontSize: tamano, fontWeight: peso, color: color),
+    );
   }
 }

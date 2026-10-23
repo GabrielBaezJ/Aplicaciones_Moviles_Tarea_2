@@ -1,14 +1,25 @@
 import '../modelos/usuario_modelo.dart';
 
 class AuthControlador {
+  // Usuario simulado localmente
   final UsuarioModelo usuarioValido = UsuarioModelo(
-    usuario: 'admin@admin.com',
+    usuario: 'admin@espe.edu.ec',
     password: '1234',
   );
-  String? validarUsuario(String usuario) {
-    if (usuario.trim().isEmpty) {
-      return 'Ingrese su usuario';
+
+  String? validarCorreo(String correo) {
+    final texto = correo.trim();
+
+    if (texto.isEmpty) {
+      return 'Ingrese su correo electrónico';
     }
+
+    // Formato básico: algo@dominio.ext
+    final formato = RegExp(r'^[\w.\-]+@[\w\-]+(\.[\w\-]+)+$');
+    if (!formato.hasMatch(texto)) {
+      return 'Ingrese un correo válido (ejemplo@correo.com)';
+    }
+
     return null;
   }
 
@@ -19,8 +30,8 @@ class AuthControlador {
     return null;
   }
 
-  bool verificarCredenciaes(String usuario, String password) {
-    return usuario.trim() == usuarioValido.usuario &&
+  bool verificarCredenciales(String correo, String password) {
+    return correo.trim().toLowerCase() == usuarioValido.usuario &&
         password == usuarioValido.password;
   }
 }
