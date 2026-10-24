@@ -27,7 +27,7 @@ class SubredModelo {
 
   String get rangoHosts => '$primeraIpUtilizable - $ultimaIpUtilizable';
 
-  factory SubredModelo.calcular({required String ip, required int prefijo}) {
+  static SubredModelo calcular({required String ip, required int prefijo}) {
     final octetos = _convertirIpAOctetos(ip);
     final ipNumero = _convertirOctetosANumero(octetos);
     final mascaraNumero = prefijo == 0
