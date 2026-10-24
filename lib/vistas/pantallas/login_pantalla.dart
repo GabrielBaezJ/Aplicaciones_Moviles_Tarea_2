@@ -43,6 +43,7 @@ class _LoginPantallaState extends State<LoginPantalla> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Inicio de sesión exitoso')));
+      Navigator.pushNamed(context, '/calculadora');
     } else {
       setState(() {
         mensajeError = 'Correo o contraseña incorrectos';

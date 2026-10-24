@@ -40,7 +40,7 @@ class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
         ipController.text,
         prefijoController.text,
       );
-      widget.onCalcular?.call(resultado);
+      Navigator.pushNamed(context, '/resultado', arguments: resultado);
     } on FormatException catch (error) {
       setState(() {
         errorIp = error.message;

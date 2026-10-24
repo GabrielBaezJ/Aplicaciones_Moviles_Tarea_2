@@ -14,7 +14,6 @@ class AuthControlador {
       return 'Ingrese su correo electrónico';
     }
 
-    // Formato básico: algo@dominio.ext
     final formato = RegExp(r'^[\w.\-]+@[\w\-]+(\.[\w\-]+)+$');
     if (!formato.hasMatch(texto)) {
       return 'Ingrese un correo válido (ejemplo@correo.com)';
