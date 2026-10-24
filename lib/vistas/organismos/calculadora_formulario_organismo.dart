@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CalculadoraFormularioOrganismo extends StatelessWidget {
+  // Mapeo de objetos
   final TextEditingController ipController;
   final TextEditingController prefijoController;
   final String? errorIp;
@@ -8,6 +9,7 @@ class CalculadoraFormularioOrganismo extends StatelessWidget {
   final VoidCallback onCalcular;
   final VoidCallback onLimpiar;
 
+  // Constructor
   const CalculadoraFormularioOrganismo({
     super.key,
     required this.ipController,
@@ -20,6 +22,7 @@ class CalculadoraFormularioOrganismo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Diseño del formulario
     return Card(
       margin: const EdgeInsets.all(24),
       child: Padding(
@@ -36,7 +39,7 @@ class CalculadoraFormularioOrganismo extends StatelessWidget {
               controller: ipController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                labelText: 'Dirección IPv4',
+                labelText: 'Direccion IPv4',
                 hintText: '192.168.1.130',
                 prefixIcon: const Icon(Icons.language),
                 errorText: errorIp,

@@ -1,4 +1,5 @@
 class SubredModelo {
+  // Datos de la subred
   final String ipIngresada;
   final int prefijo;
   final String mascara;
@@ -11,6 +12,7 @@ class SubredModelo {
   final int hostsUtilizables;
   final int salto;
 
+  // Constructor
   const SubredModelo({
     required this.ipIngresada,
     required this.prefijo,
@@ -27,15 +29,23 @@ class SubredModelo {
 
   String get rangoHosts => '$primeraIpUtilizable - $ultimaIpUtilizable';
 
+  // Metodo calcular
   static SubredModelo calcular({required String ip, required int prefijo}) {
+    // Conversión de la IP
     final octetos = _convertirIpAOctetos(ip);
     final ipNumero = _convertirOctetosANumero(octetos);
+
+    // Calculo de la mascara
     final mascaraNumero = prefijo == 0
         ? 0
         : (0xFFFFFFFF << (32 - prefijo)) & 0xFFFFFFFF;
+
+    // Calculo de la red
     final redNumero = ipNumero & mascaraNumero;
     final bitsHost = 32 - prefijo;
     final totalDirecciones = 1 << bitsHost;
+
+    // Calculo de direcciones
     final broadcastNumero = redNumero + totalDirecciones - 1;
     final hostsUtilizables = totalDirecciones > 2 ? totalDirecciones - 2 : 0;
     final primeraNumero = totalDirecciones > 1 ? redNumero + 1 : redNumero;
@@ -44,6 +54,7 @@ class SubredModelo {
         : broadcastNumero;
     final mascaraOctetos = _convertirNumeroAOctetos(mascaraNumero);
 
+    // Instanciacion del modelo
     return SubredModelo(
       ipIngresada: octetos.join('.'),
       prefijo: prefijo,
@@ -60,9 +71,10 @@ class SubredModelo {
   }
 
   static List<int> _convertirIpAOctetos(String ip) {
+    // Separacion de octetos
     final octetos = ip.trim().split('.');
     if (octetos.length != 4) {
-      throw const FormatException('La dirección debe tener cuatro octetos');
+      throw const FormatException('La direccion debe tener cuatro octetos');
     }
 
     final valores = octetos.map(int.parse).toList();
@@ -73,6 +85,7 @@ class SubredModelo {
   }
 
   static int _convertirOctetosANumero(List<int> octetos) {
+    // Conversion a numero
     return (octetos[0] << 24) |
         (octetos[1] << 16) |
         (octetos[2] << 8) |
@@ -80,6 +93,7 @@ class SubredModelo {
   }
 
   static List<int> _convertirNumeroAOctetos(int numero) {
+    // Conversion a octetos
     return [
       (numero >> 24) & 255,
       (numero >> 16) & 255,
@@ -89,6 +103,7 @@ class SubredModelo {
   }
 
   static String _convertirNumeroAIp(int numero) {
+    // Conversión a IP
     return _convertirNumeroAOctetos(numero).join('.');
   }
 }

@@ -5,8 +5,10 @@ import '../../modelos/subred_model.dart';
 import '../organismos/calculadora_formulario_organismo.dart';
 
 class CalculadoraPantalla extends StatefulWidget {
+  // Resultado de la calculadora
   final ValueChanged<SubredModelo>? onCalcular;
 
+  // Constructor
   const CalculadoraPantalla({super.key, this.onCalcular});
 
   @override
@@ -14,6 +16,7 @@ class CalculadoraPantalla extends StatefulWidget {
 }
 
 class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
+  // Instanciacion de clases
   final ipController = TextEditingController();
   final prefijoController = TextEditingController();
   final controlador = SubredControlador();
@@ -21,6 +24,7 @@ class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
   String? errorIp;
   String? errorPrefijo;
 
+  // Metodo calcular
   void calcular() {
     setState(() {
       errorIp = controlador.validarIp(ipController.text);
@@ -44,6 +48,7 @@ class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
     }
   }
 
+  // Limpiar
   void limpiar() {
     ipController.clear();
     prefijoController.clear();
@@ -55,6 +60,7 @@ class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
 
   @override
   void dispose() {
+    // Liberar controladores
     ipController.dispose();
     prefijoController.dispose();
     super.dispose();
@@ -62,6 +68,7 @@ class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
 
   @override
   Widget build(BuildContext context) {
+    // Diseno de la pantalla
     return Scaffold(
       appBar: AppBar(title: const Text('Calculadora de red')),
       body: SingleChildScrollView(

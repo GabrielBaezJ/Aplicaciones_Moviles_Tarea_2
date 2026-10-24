@@ -1,9 +1,10 @@
 import '../modelos/subred_model.dart';
 
 class SubredControlador {
+  // Validación de IP
   String? validarIp(String ip) {
     if (ip.trim().isEmpty) {
-      return 'Ingrese una dirección IPv4';
+      return 'Ingrese una direccion IPv4';
     }
 
     try {
@@ -14,6 +15,7 @@ class SubredControlador {
     }
   }
 
+  // Validación de prefijo
   String? validarPrefijo(String prefijo) {
     if (prefijo.trim().isEmpty) {
       return 'Ingrese un prefijo CIDR';
@@ -26,6 +28,7 @@ class SubredControlador {
     return null;
   }
 
+  // Metodo calcular
   SubredModelo calcular(String ip, String prefijo) {
     final errorIp = validarIp(ip);
     if (errorIp != null) {
