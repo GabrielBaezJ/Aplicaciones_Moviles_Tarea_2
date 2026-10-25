@@ -7,24 +7,25 @@ class ResultadoPantalla extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Se extrae el modelo de red que el controlador envió al cambiar de pantalla
     final SubredModelo redCalculada = ModalRoute.of(context)!.settings.arguments as SubredModelo;
 
     return Scaffold(
+      backgroundColor: Colors.blue[50],
+      
       appBar: AppBar(
-        title: const Text('Resultado de la Red'),
+        title: const Text(
+          'Resultado de la Red',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Colors.blue[800],
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
-            const Text(
-              'Detalles Técnicos',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
             
-            // Llamada al organismo pasándole los datos
             Expanded(
               child: ListView(
                 children: [
@@ -34,9 +35,24 @@ class ResultadoPantalla extends StatelessWidget {
             ),
             
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Volver a la calculadora'),
+            
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                label: const Text(
+                  'Volver a la calculadora',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[800], 
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30), 
+                  ),
+                ),
+              ),
             ),
           ],
         ),

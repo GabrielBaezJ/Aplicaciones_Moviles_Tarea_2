@@ -68,17 +68,35 @@ class _CalculadoraPantallaState extends State<CalculadoraPantalla> {
 
   @override
   Widget build(BuildContext context) {
-    // Diseno de la pantalla
     return Scaffold(
-      appBar: AppBar(title: const Text('Calculadora de red')),
+      backgroundColor: Colors.blue[50],
+      
+      appBar: AppBar(
+        title: const Text(
+          'Calculadora de red',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: Colors.blue[800],
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.white), 
+      ),
       body: SingleChildScrollView(
-        child: CalculadoraFormularioOrganismo(
-          ipController: ipController,
-          prefijoController: prefijoController,
-          errorIp: errorIp,
-          errorPrefijo: errorPrefijo,
-          onCalcular: calcular,
-          onLimpiar: limpiar,
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              //  organismo 
+              CalculadoraFormularioOrganismo(
+                ipController: ipController,
+                prefijoController: prefijoController,
+                errorIp: errorIp,
+                errorPrefijo: errorPrefijo,
+                onCalcular: calcular,
+                onLimpiar: limpiar,
+              ),
+            ],
+          ),
         ),
       ),
     );
