@@ -3,7 +3,7 @@ import '../modelos/usuario_modelo.dart';
 class AuthControlador {
   // Usuario simulado localmente
   final UsuarioModelo usuarioValido = UsuarioModelo(
-    usuario: 'admin@espe.edu.ec',
+    usuario: 'admin@admin.com',
     password: '1234',
   );
 
